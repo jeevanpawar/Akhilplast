@@ -1,0 +1,348 @@
+#navigation, 
+#nav li ul li, 
+#nav li ul li a{
+background: #000; 
+}
+
+/* Menu Item text color */
+#nav li a, 
+#nav li a:hover, 
+#nav li ul li,
+#nav li ul li a,
+#nav li ul li a:hover  {
+color: #000; 
+}
+
+/* Menu Item background color on hover */
+#nav li a:hover, 
+#nav li ul li a:hover  {
+background:#39C;
+   
+}
+
+/* Text Shadow */
+#nav li a, 
+#nav li a:hover, 
+#nav li ul li a:hover  {
+	
+}
+
+
+
+#menu_div{
+top: 0;
+left: 0;
+} /* Free space to top specialy for menu */
+
+#navigation {
+width: 1315px;
+}
+
+#navigation, #menu_div {
+width: 1284px;
+
+}
+
+#menu_div, #navigation, #menu, #nav{
+height: 45px; 
+
+/* menu height */
+}
+
+#menu_div:hover,
+#navigation:hover,
+#nav li a:hover, #nav li ul a 
+{
+	margin-top:2px;
+	
+} 
+
+#menu_div,
+#navigation, 
+#nav li a, 
+#menu_div:not(:hover), 
+#navigation:not(:hover)
+{
+	height:38px;
+}
+
+
+#menu {
+	
+margin:0 auto; /*center the menu*/
+padding:0;}
+
+#nav{
+background-color:#39C;
+height:45px;
+margin:0;
+margin-top:-40px;
+padding:0;
+position: relative;
+color:#000;
+letter-spacing:1px;
+font-family: 'Arial', Helvetica, sans-serif;
+width:1290px;
+margin-left:10px;
+}
+
+#nav li a,#nav li {
+
+float:left;
+}
+
+#nav li {
+	
+list-style:none;
+position:relative;
+}
+
+#nav li a {
+line-height: 45px;
+padding:0 20px;
+text-decoration:none;
+margin:0;
+font-size:12px;
+font-weight:800;
+text-transform:uppercase;
+}
+
+/*====================
+	Submenu 
+=====================*/
+#nav li ul {
+display:none;
+position:absolute;
+left:0;
+top:100%;
+padding:0;
+margin:0;
+} /* hide submenu */
+
+#nav li:hover > ul {
+display:block;
+} /* show submenu on hover */
+
+#nav li ul li,#nav li ul li a {
+background-color:#FFF;
+float:none;
+height: 35px; /* submenu item height */
+min-width: 140px; /* submenu item minimal width */
+line-height: 35px;
+border-right: 0;
+text-shadow: none;
+display:block;
+font-size:13px;
+font-weight:400;
+color:#000;
+text-transform:inherit;
+} /* Submenu item */
+
+#nav li ul li {
+_display:inline; /* for IE */
+}
+
+/* == 12. Sub-Sub Menu == */
+#nav li ul li ul {
+display:none;
+}
+
+#nav li ul li:hover ul {
+left:100%;
+
+top:0;
+}
+
+/*====================
+	Search form 
+====================*/
+
+#nav li a:hover,
+#nav li ul li a:hover  {
+-webkit-transition-property:color, background; 
+-webkit-transition-duration: 0.5s, 0.5s; 
+-webkit-transition-timing-function: linear, ease-out;
+}
+
+
+/* Style you custom popupbox according to your requirement */
+.popupbox {
+	width:950px;
+	height:600px;
+	overflow:auto;
+	background-color:#FFF;
+	background-repeat:no-repeat;
+	display: none; /* Hidden as default */
+	float: left;
+	position: fixed;
+	top: 50%; left: 50%;
+	z-index: 99999;
+	-webkit-box-shadow: 0px 0px 20px #000;
+	-moz-box-shadow: 0px 0px 20px #000;
+	box-shadow: 0px 0px 20px #000;
+}
+.popupbox_view {
+	width:950px;
+	height:600px;
+	overflow:auto;
+	background-color:#EEE;
+	background-repeat:no-repeat;
+	display: none; /* Hidden as default */
+	float: left;
+	position: fixed;
+	top: 50%; left: 50%;
+	z-index: 99999;
+	-webkit-box-shadow: 0px 0px 20px #000;
+	-moz-box-shadow: 0px 0px 20px #000;
+	box-shadow: 0px 0px 20px #000;
+}
+
+.popupbox_pro {
+	width:480px;
+	height:450px;
+	overflow:auto;
+	background-color:#FFF;
+	background-repeat:no-repeat;
+	display: none; /* Hidden as default */
+	float: left;
+	position: fixed;
+	top: 50%; left: 50%;
+	z-index: 99999;
+	-webkit-box-shadow: 0px 0px 20px #000;
+	-moz-box-shadow: 0px 0px 20px #000;
+	box-shadow: 0px 0px 20px #000;
+}
+
+.popupbox_stock {
+	width:600px;
+	height:600px;
+	overflow:auto;
+	background-color:#FFF;
+	background-repeat:no-repeat;
+	display: none; /* Hidden as default */
+	float: left;
+	position: fixed;
+	top: 50%; left: 50%;
+	z-index: 99999;
+	-webkit-box-shadow: 0px 0px 20px #000;
+	-moz-box-shadow: 0px 0px 20px #000;
+	box-shadow: 0px 0px 20px #000;
+}
+
+.popupbox_client {
+	width:730px;
+	height:450px;
+	overflow:auto;
+	background-color:#FFF;
+	background-repeat:no-repeat;
+	display: none; /* Hidden as default */
+	float: left;
+	position: fixed;
+	top: 50%; left: 50%;
+	z-index: 99999;
+	-webkit-box-shadow: 0px 0px 20px #000;
+	-moz-box-shadow: 0px 0px 20px #000;
+	box-shadow: 0px 0px 20px #000;
+}
+.popupbox_pay {
+	width:600px;
+	height:500px;
+	overflow:auto;
+	background-color:#FFF;
+	background-repeat:no-repeat;
+	display: none; /* Hidden as default */
+	float: left;
+	position: fixed;
+	top: 50%; left: 50%;
+	z-index: 99999;
+	-webkit-box-shadow: 0px 0px 20px #000;
+	-moz-box-shadow: 0px 0px 20px #000;
+	box-shadow: 0px 0px 20px #000;
+}
+
+.popupbox_small {
+	width:600px;
+	height:400px;
+	overflow:auto;
+	background-color:#FFF;
+	background-repeat:no-repeat;
+	display: none; /* Hidden as default */
+	float: left;
+	position: fixed;
+	top: 50%; left: 50%;
+	z-index: 99999;
+	-webkit-box-shadow: 0px 0px 20px #000;
+	-moz-box-shadow: 0px 0px 20px #000;
+	box-shadow: 0px 0px 20px #000;
+}
+
+.popupbox2 {
+	width:1000px;
+	height:400px;
+	background-color:#FFF;
+	background-repeat:no-repeat;
+	display: none; /* Hidden as default */
+	float: left;
+	position: fixed;
+	top: 50%; left: 50%;
+	z-index: 99999;
+	-webkit-box-shadow: 0px 0px 20px #000;
+	-moz-box-shadow: 0px 0px 20px #000;
+	box-shadow: 0px 0px 20px #000;
+}
+
+.popupbox3 {
+	width:600px;
+	height:420px;
+	background-color:#FFF;
+	background-repeat:no-repeat;
+	display: none; /* Hidden as default */
+	float: left;
+	position: fixed;
+	top: 50%; left: 50%;
+	z-index: 99999;
+	-webkit-box-shadow: 0px 0px 20px #000;
+	-moz-box-shadow: 0px 0px 20px #000;
+	box-shadow: 0px 0px 20px #000;
+}
+
+#intabdiv3 {
+	padding:70px;
+}
+#intabdiv3 h2 {
+	text-align:center;
+	font-size:20px;
+	margin-top:-70px;
+	padding:40px;
+	color:#333;
+	font-family:Verdana, Geneva, sans-serif;
+}
+#intabdiv3 p {
+	font-size:12px;
+	color:#696868;
+	font-family:Verdana, Geneva, sans-serif;
+	line-height:20px;
+}
+
+
+#fade { 
+	display: none; /* Hidden as default */
+	background: #000;
+	position: fixed; left: 0; top: 0;
+	width: 100%; height: 100%;
+	opacity: .80;
+	z-index: 9999;
+}
+#intabdiv {
+	text-align:center;
+}
+#close img {
+	text-decoration:none;
+}
+#close {
+	width:50px;
+	height:50px;
+	position: absolute;
+	float:right;
+}
+
