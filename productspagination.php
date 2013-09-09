@@ -61,7 +61,7 @@ if($_GET)
 			echo $c_row[6];	
 			echo "</td>";
 			echo "<td >";		
-			echo "<a href='productpagination.php?c_id1=$c_row[0]' onclick='return confirmSubmit()' class='print'>Delete</a>&nbsp;<a rel='facebox' href='updateproducts.php?c_id2=$c_row[0]' class='print'>Update</a>&nbsp;<a rel='facebox' href='productsview.php?c_id3=$c_row[0]' class='print'>View</a> ";
+			echo "<a href='?c_id1=$c_row[0]' onclick='return confirmSubmit()' class='print'>Delete</a>&nbsp;<a rel='facebox' href='updateproducts.php?c_id2=$c_row[0]' class='print'>Update</a>&nbsp;<a rel='facebox' href='productsview.php?c_id3=$c_row[0]' class='print'>View</a> ";
 			echo "</td>";
 			echo "</tr>";
 		}

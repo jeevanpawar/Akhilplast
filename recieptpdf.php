@@ -25,34 +25,30 @@ $res_detail1=mysql_query($qry_detail);
 	margin-left:250px;
 	margin-top:-130px;
 	line-height:40px;
-	
 }
-.description
-{
+.description{
 	margin-top:-2px;
 	height:650px;
 	border:1px solid #000;
 }
-.vat
-{
+.vat{
 	position:absolute;
 	margin-bottom:-500px;	
 	left: 7px;
 	top: 850px;
 }
-.ms
-{
+.ms{
 	position:absolute;
 	top: 200px;
 	left: 7px;
 }
 .header{
 	border:1px solid #000;
+	
 }
 .tax{
 	margin-top:5px;
 	border:1px solid #000;
-	
 }
 .tab1
 {
@@ -102,11 +98,10 @@ $res_detail1=mysql_query($qry_detail);
 {
 	margin-top:10px;
 	text-align:center;
-	font-size:25px;
+	font-size:26px;
 	letter-spacing:2px;
 	font-weight:bold;
 	color:#000;
-	background-color:#CCC;
 	width:100%;
 }
 .dis
@@ -130,24 +125,23 @@ $res_detail1=mysql_query($qry_detail);
 {
 	width:100%;
 	text-align:center;
+	border-collapse:collapse;
 }
 .details td
 {
-	border:1px solid #000;
+	
 }
 .hr td
 {
-	background-color:#CCC;
-	border:1px solid #333;
+	background-color:#E6E6E6;
 }
 .total
 {
 	margin-left:0px;
 	width:725px;
 	margin-top:-20px;
-	height:150px;
+	height:100px;
 	border:1px solid #000;
-
 }
 .akh
 {
@@ -173,7 +167,7 @@ $res_detail1=mysql_query($qry_detail);
 .buy1
 {
 	margin-left:5px;
-	margin-top:10px;
+	margin-top:5px;
 	width:320px;
 	height:120px;
 }
@@ -191,7 +185,13 @@ $res_detail1=mysql_query($qry_detail);
 	text-align:center;
 	font-size:12px;
 	margin-left:295px;
-	
+}
+.d1 img{
+	width:100px;
+	height:100px;
+	position:absolute;
+	margin-left:20px;
+	margin-top:50px;
 }
 </style>
 </head>
@@ -199,11 +199,10 @@ $res_detail1=mysql_query($qry_detail);
 <br>
 <div class="header">
 <br>
-
+<div class="d1"><img src="src/logo.jpg"/> </div>
 <div class="de">DELIVERY CHALLAN</div>
-<div class="inv">AKHIL PLAST</div><br><br>
-<div align="center">PLOT NO. 8, STICE SINNAR-SHIRDI ROAD, MUSALGAON,<br>TAL. -SINNAR, DIST. -NASHIK, PIN : 422112. CELL  
-:8888878246</div>
+<div class="inv">AKHIL PLAST</div><br>
+<div align="center" style="margin-top:5px">PLOT NO. 8, STICE SINNAR-SHIRDI ROAD, MUSALGAON,<br>TAL. -SINNAR, DIST.-NASHIK, PIN :422112.TEL. NO:(02551)240948</div>
 <br><br>
 </div>
 
@@ -211,7 +210,7 @@ $res_detail1=mysql_query($qry_detail);
 <table class="buy1">
 <tr valign="top">
 <td width="100">Buyer Name :
-<?php echo $row_c[2]; ?></td>
+<?php echo $row_c[3]; ?></td>
 </tr>
 </table>
 <table class="buy2">
@@ -227,11 +226,11 @@ $res_detail1=mysql_query($qry_detail);
 </div>
 
 <div class="description">
-<table class="details" > 
+<table class="details" border="1"> 
 <tr class="hr">
 <td width="10">Sr.No.</td>
 <td>Description Of Goods</td>
-<td width="100" colspan="2">Quantity</td>
+<td width="100" >Quantity</td>
 <td width="100">Total Quantity</td>
 </tr>
 <?php
@@ -247,10 +246,7 @@ while($row_d=mysql_fetch_array($res_detail1))
 	echo $row_d[3];
 	echo "</td>";
 	echo "<td>";
-	echo $row_d[4];
-	echo "</td>";
-	echo "<td>";
-	echo $row_d[5];
+	echo $row_d[4].' X '.$row_d[5];
 	echo "</td>";
 	echo "<td>";
 	echo $row_d[6];
@@ -261,14 +257,7 @@ while($row_d=mysql_fetch_array($res_detail1))
 </table>
 </div>
 <div class="total">
-<table class="details"> 
-<tr>
-<td colspan="2">&nbsp;</td>
-<td width="100">Total:</td>
-<td width="100">
-<?php echo $row[4]; ?></td>
-</tr>
-</table>
+
 <div class="akh">For - AKHIL PLAST</div>
 <br>
 <br>

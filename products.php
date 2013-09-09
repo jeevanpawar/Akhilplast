@@ -2,11 +2,6 @@
 include("session.php");
 error_reporting(0);
 include("include/database1.php");
-$per_page = 20; 
-$sql = "select * from products";
-$rsd = mysql_query($sql);
-$count = mysql_num_rows($rsd);
-$pages = ceil($count/$per_page);
 ?>
 
 <?php
@@ -26,8 +21,9 @@ $pages = ceil($count/$per_page);
 		}
 		
 	}
+	$c_qry_f="select * from products order by id desc";
+	$c_res_f=mysql_query($c_qry_f);
 ?>
-
 <html>
 <head>
 <title>Akhil Plast</title>
@@ -39,62 +35,38 @@ $pages = ceil($count/$per_page);
 <script type="text/javascript" src="js/superfish.js"></script>
 <script type="text/javascript" src="js/custom.js"></script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript">
+<link href="id_popup/facebox.css" media="screen" rel="stylesheet" type="text/css" />
+<script src="id_popup/jquery.js" type="text/javascript"></script>
+<script src="id_popup/facebox.js" type="text/javascript"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+      $('a[rel*=facebox]').facebox({
+        loadingImage : 'src/loading.gif',
+        closeImage   : 'src/closelabel.png'
+      })
+    })
+
+</script>
+
+<style type="text/css" title="currentStyle">
+	@import "css/demo_page.css";
+	@import "css/demo_table.css";
+</style>
+<script type="text/javascript" language="javascript" src="js/jquery.js"></script>
+<script type="text/javascript" language="javascript" src="js/jquery.dataTables.js"></script>
+<script type="text/javascript" language="javascript" src="table.js"></script>
+
+<script type="text/javascript">
 	
-	function confirmSubmit()
+function confirmSubmit()
 {
-var agree=confirm("Are you sure to Delete this Entry?");
-if (agree)
-	return true ;
-else
-	return false ;
+	var agree=confirm("Are you sure to Delete this Entry?");
+	if (agree)
+		return true ;
+	else
+		return false ;
 }
 	
-	$(document).ready(function(){
-	//Display Loading Image
-	function Display_Load()
-	{
-	    $("#loading").fadeIn(900,0);
-	
-	}
-	//Hide Loading Image
-	function Hide_Load()
-	{
-		$("#loading").fadeOut('slow');
-	};
-	
-
-    //Default Starting Page Results
-   
-	$("#pagination li:first").css({'color' : '#FF0084'}).css({'border' : 'none'});
-	
-	Display_Load();
-	
-	$("#content").load("productspagination.php?page=1", Hide_Load());
-
-
-
-	//Pagination Click
-	$("#pagination li").click(function(){
-			
-		Display_Load();
-		
-		//CSS Styles
-		$("#pagination li")
-		.css({'color' : '#0063DC'});
-		
-		$(this)
-		.css({'color' : '#FF0084'})
-		.css({'border' : 'none'});
-
-		//Loading Data
-		var pageNum = this.id;
-		$("#content").load("clientspagination.php?page=" + pageNum, Hide_Load());
-		
-	});
-	
-	
-});
 	</script>
 	
 
@@ -107,52 +79,7 @@ else
     <?php
 	include("header.php");
 	?>
-    	<?php
-		
-		if(isset($_REQUEST['search']))
-		  {
-		 	 $srch=$_REQUEST['search'];			
-			 $query="select  * from products where p_name LIKE '%$srch%' OR p_code LIKE '%$srch%' OR p_qual LIKE '%$srch%' OR c_quant LIKE'%srch%'";
-	 		 $ans=mysql_query($query);
-	 
-	?>
-        <table class="emp_tab">
-        <?php
-        if(mysql_num_rows($ans)==0)
-		{
-		?>
-        <tr class='pagi'>
-         <td colspan='6' align="center"><h3>No Data available</h3></td>
-        </tr>
-		
-		<?php
-        }
-		?>
-           <?php
-		while($c_row=mysql_fetch_array($ans))
-		{
-        echo "<tr class='pagi'>";
-         
-       echo "<td width='250'>";
-		echo $c_row[2];
-		echo "</td>";
-        echo "<td width='160'>";
-		echo $c_row[3];
-		echo "</td>";		
-		echo "<td>";
-		echo $c_row[8];	
-		echo "</td>";
-		echo "<td >";
-		echo "<a href='?c_id1=$c_row[0]' onclick='return confirmSubmit()'><img src='imgs1/green_delete.png' height='20px;'/></a>&nbsp;<a href='updateclients.php?c_id2=$c_row[0]'><img src='imgs1/updt.png' height='20px;'/></a>&nbsp;<a href='clientsview.php?c_id3=$c_row[0]'><img src='imgs1/view.png'  /></a>&nbsp;<a href='gatepass.php?c_id3=$c_row[0]' class='print'>GatePass</a>&nbsp;<a href='view_gatepass.php?c_id3=$c_row[0]' class='print'>g_v</a>";
-		echo "</td>";
-		echo "</tr>";
-		}
-		?>      
-        
-        </table>
-        <?php
-		  }
-		?>
+    	
         <form action="" method="post" name="search">
         <table class="emp_tab" cellpadding="0" cellspacing="0">
         <tr class="search_res">
@@ -164,24 +91,57 @@ else
         </td>
         </tr>
         </table>
+        <br>
+        <div id="demo">
+        <div class="tab">
+        <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+        <thead>
+        <tr>
+        <th width="100">Product Code</th>
+        <th width="200">Product Name</th>        
+		<th width='100'>Size</th>	        
+        <th width="100">Weight</th>
+         <th width="100">Color</th>
+        <th width="100">Shape</th>
+        <th width="170">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php
+		while($c_row=mysql_fetch_array($c_res_f))
+		{
+			echo "<tr class='pagi'>";
+			echo "<td  >";
+			echo $c_row[1];
+			echo "</td>";
+			echo "<td >";
+			echo $c_row[2];
+			echo "</td>";		
+			echo "<td>";
+			echo $c_row[3];	
+			echo "</td>";
+			echo "<td>";
+			echo $c_row[4];	
+			echo "</td>";
+			echo "<td>";
+			echo $c_row[5];	
+			echo "</td>";
+			echo "<td>";
+			echo $c_row[6];	
+			echo "</td>";
+			echo "<td >";		
+			echo "<a href='?c_id1=$c_row[0]' onclick='return confirmSubmit()' class='print'>Delete</a>&nbsp;<a rel='facebox' href='updateproducts.php?c_id2=$c_row[0]' class='print'>Update</a>&nbsp;<a rel='facebox' href='productsview.php?c_id3=$c_row[0]' class='print'>View</a> ";
+			echo "</td>";
+			echo "</tr>";
+		}
+		?>
+        </tbody>
+        </table>
+        </div>
+        </div>
         </form>
                 
-        <div id="loading" ></div>
-	    <div id="content" ></div>
-        <table width="800px">
-		<tr><Td>
-        <ul id="pagination">
-            <?php
-                    
-            //Show page links
-            for($i=1; $i<=$pages; $i++)
-            {								
-                echo '<li id="'.$i.'">'.$i.'</li>';
-            }
-            ?>
-		</ul>	
-		</Td></tr></table>
-
+        
         </div>                
                
   				</div>

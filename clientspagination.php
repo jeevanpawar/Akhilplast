@@ -2,6 +2,7 @@
 include("session.php");
 include("include/database.php");
 error_reporting(0);
+
 ?>
 <?php
 $per_page = 20; 
@@ -61,9 +62,7 @@ if($_GET)
 		echo $c_row[8];	
 		echo "</td>";
 		echo "<td width='300'>";		
-        echo "<a href='?c_id1=$c_row[0]' onclick='return confirmSubmit()' class='print'>
-		Delete</a>&nbsp;
-		<a rel='facebox' href='updateclients.php?c_id2=$c_row[0]' class='print'>
+        echo "<a rel='facebox' href='updateclients.php?c_id2=$c_row[0]' class='print'>
 		Update</a>&nbsp;<a rel='facebox' href='clientsview.php?c_id3=$c_row[0]' class='print'>View</a>&nbsp;<a href='view_Requirement.php?id=$c_row[0]' class='print'>PO</a>";
 		echo "</td>";
 		echo "</tr>";

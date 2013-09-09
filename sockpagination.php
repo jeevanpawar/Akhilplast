@@ -14,8 +14,7 @@ include("include/database.php");
 		$qry_s="select * from stock where st_id='$row_se[1]'";
 		$res_s=mysql_query($qry_s);
 		$row_s=mysql_fetch_array($res_s);
-		
-		
+				
 		$up=$row_s[9]-$row_se[4];
 		
 		$qry_update="update stock SET st_quant='".$up."' where st_id='$row_s[0]'";
@@ -100,7 +99,7 @@ if($_GET)
 			echo $row[4];
 			echo "</td>";
 			echo "<td width='100'>";
-			echo "<a href='sockpagination.php?del=$row[0]' onclick='return confirmSubmit()' class='print'>Delete</a>&nbsp;<a rel='facebox' href='update_stock.php?c_id2=$c_row[0]' class='print'>Update</a>&nbsp;";
+			echo "<a href='sockpagination.php?del=$row[0]' onclick='return confirmSubmit()' class='print'>Delete</a>&nbsp;";
 			echo "</td>";
 			echo "</tr>";
 		}

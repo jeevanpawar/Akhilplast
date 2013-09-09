@@ -105,7 +105,7 @@ session_start();
 </div>
 
 </div>
-<div class="reference">Copyright @ 2013 Jaykar Industries. Powered By:<a href="http://www.wavetechline.com" target="_tab"> Wave TechLine India Pvt. Ltd.</a></div>
+<div class="reference">Copyright @ 2013 Akhil Plast Powered By:<a href="http://www.wavetechline.com" target="_tab"> Wave TechLine India Pvt. Ltd.</a></div>
 
 </div>
 </body>

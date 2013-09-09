@@ -23,6 +23,8 @@ else
 }
 
 }
+$c_qry_f="select * from clients order by c_id desc";
+$c_res_f=mysql_query($c_qry_f);
 ?>
 <html>
 <head>
@@ -35,58 +37,34 @@ else
 <script type="text/javascript" src="js/superfish.js"></script>
 <script type="text/javascript" src="js/custom.js"></script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
+<link href="id_popup/facebox.css" media="screen" rel="stylesheet" type="text/css" />
+<script src="id_popup/jquery.js" type="text/javascript"></script>
+<script src="id_popup/facebox.js" type="text/javascript"></script>
+
 <script type="text/javascript">
-$(document).ready(function(){
-//Display Loading Image
-function Display_Load()
-{
-$("#loading").fadeIn(900,0);
-
+    jQuery(document).ready(function($) {
+		 
+      $('a[rel*=facebox]').facebox({
+        loadingImage : 'src/loading.gif',
+        closeImage   : 'src/closelabel.png'
+      })
+    })
+	function confirmSubmit()
+	{
+		var agree=confirm("Are you sure to Delete this Entry?");
+		if (agree)
+			return true ;
+		else
+			return false ;
 }
-//Hide Loading Image
-function Hide_Load()
-{
-$("#loading").fadeOut('slow');
-};
-function confirmSubmit()
-{
-var agree=confirm("Are you sure to Delete this Entry?");
-if (agree)
-	return true ;
-else
-	return false ;
-}
-
-//Default Starting Page Results
-
-$("#pagination li:first").css({'color' : '#FF0084'}).css({'border' : 'none'});
-
-Display_Load();
-
-$("#content").load("clientspagination.php?page=1", Hide_Load());
-//Pagination Click
-$("#pagination li").click(function(){
-	
-Display_Load();
-
-//CSS Styles
-$("#pagination li")
-.css({'color' : '#0063DC'});
-
-$(this)
-.css({'color' : '#FF0084'})
-.css({'border' : 'none'});
-
-//Loading Data
-var pageNum = this.id;
-$("#content").load("clientspagination.php?page=" + pageNum, Hide_Load());
-
-});
-
-
-});
 </script>
-
+<style type="text/css" title="currentStyle">
+	@import "css/demo_page.css";
+	@import "css/demo_table.css";
+</style>
+<script type="text/javascript" language="javascript" src="js/jquery.js"></script>
+<script type="text/javascript" language="javascript" src="js/jquery.dataTables.js"></script>
+<script type="text/javascript" language="javascript" src="table.js"></script>
 
 </head>
 <body>
@@ -105,22 +83,50 @@ include("header.php");
 </span>
 </td>
 </tr>
-</table> 
+</table>
+<br>
+		<div id="demo">
+        <div class="tab">
+		<table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+        <thead>
+        <tr>
+        <th width="200">Name</th>
+        <th width="300">Company Name</th> 
+        <th width="120">Mobile No</th>       
+		<th width="120">Phone No</th>	        
+        <th width="200">Action</th>
+        </tr>
+		</thead>
+        <tbody>
+        <?php
+		while($c_row=mysql_fetch_array($c_res_f))
+		{
+        echo "<tr class='pagi'>";
+        echo "<td>";
+		echo $c_row[2];
+		echo "</td>";
+        echo "<td width='160'>";
+		echo $c_row[3];
+		echo "</td>";
+		echo "<td width='160'>";
+		echo $c_row[9];
+		echo "</td>";		
+		echo "<td>";
+		echo $c_row[8];	
+		echo "</td>";
+		echo "<td width='300'>";		
+        echo "<a rel='facebox' href='updateclients.php?c_id2=$c_row[0]' class='print'>
+		Update</a>&nbsp;<a rel='facebox' href='clientsview.php?c_id3=$c_row[0]' class='print'>View</a>&nbsp;<a href='view_Requirement.php?id=$c_row[0]' class='print'>PO</a>";
+		echo "</td>";
+		echo "</tr>";
+		}
+		?> 
+        </tbody>     
+        </table>
+        </div>
+        </div> 
 </form>
-<div id="loading" ></div>
-<div id="content" ></div>
-<table width="800px">
-<tr><td>
-<ul id="pagination">
-<?php
-//Show page links
-for($i=1; $i<=$pages; $i++)
-{								
-    echo '<li id="'.$i.'">'.$i.'</li>';
-}
-?>
-</ul>	
-</td></tr></table>
+
 </div>                
 </div>
 </div>

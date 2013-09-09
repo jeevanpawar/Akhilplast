@@ -109,8 +109,6 @@ box-shadow: 0 2px 6px rgba(0,0,0,0.5), inset 0 1px rgba(255,255,255,0.3), inset 
 	padding:2px 4px 2px 4px;
 	color:#000;
 	text-decoration:none;
-	background-color:#EEE;
-	border:1px solid #EEE;
 	font-size:11px;
 }
 .print:hover
@@ -1095,6 +1093,7 @@ div#footer-links p {
 	width:1290px;
 	height:35px;
 	
+	
 }
 
 .emp_tab1
@@ -1134,11 +1133,9 @@ div#footer-links p {
 	text-align:center;
 	background-color:#000;
 	font-size:12px;
-	border-radius:5px;
 	margin-left:12px;
 	letter-spacing:1px;
 	background:#FFF;
-   
 }
 .emp_header input
 {
@@ -1766,13 +1763,12 @@ option
 
 .search_res
 {
-	background-color:#FFF;
 	height:25px;
 	color:#000;
-	}
+}
 .search_res td
 {
-	 background:#FFF;
+	 background:#D3D6FF;
    
 }
 .h_tab1

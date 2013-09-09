@@ -2,12 +2,9 @@
 include("session.php");
 error_reporting(0);
 include("include/database.php");
-$per_page = 20; 
-$sql = "select * from clients";
-$rsd = mysql_query($sql);
-$count = mysql_num_rows($rsd);
-$pages = ceil($count/$per_page)
 
+$c_qry_f="select * from clients order by c_id desc";
+$c_res_f=mysql_query($c_qry_f);	
 ?>
 <html>
 <head>
@@ -21,48 +18,28 @@ $pages = ceil($count/$per_page)
 <script type="text/javascript" src="js/superfish.js"></script>
 <script type="text/javascript" src="js/custom.js"></script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
-	<script type="text/javascript">
-	
-	$(document).ready(function(){
-		
-	//Display Loading Image
-	function Display_Load()
-	{
-	    $("#loading").fadeIn(900,0);	
-	}
-	//Hide Loading Image
-	function Hide_Load()
-	{
-		$("#loading").fadeOut('slow');
-	};
-	
-    //Default Starting Page Results
-   
-	$("#pagination li:first").css({'color' : '#FF0084'}).css({'border' : 'none'});
-	
-	Display_Load();
-	
-	$("#content").load("addpopag.php?page=1", Hide_Load());
-	//Pagination Click
-	$("#pagination li").click(function(){
-			
-		Display_Load();
-		
-		//CSS Styles
-		$("#pagination li")
-		.css({'color' : '#0063DC'});
-		
-		$(this)
-		.css({'color' : '#FF0084'})
-		.css({'border' : 'none'});
+<link href="id_popup/facebox.css" media="screen" rel="stylesheet" type="text/css" />
+<script src="id_popup/jquery.js" type="text/javascript"></script>
+<script src="id_popup/facebox.js" type="text/javascript"></script>
 
-		//Loading Data
-		var pageNum = this.id;
-		
-		$("#content").load("addpopag.php?page=" + pageNum, Hide_Load());
-	});	
-});
-	</script>
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+		 
+      $('a[rel*=facebox]').facebox({
+        loadingImage : 'src/loading.gif',
+        closeImage   : 'src/closelabel.png'
+      })
+    })
+</script>
+<style type="text/css" title="currentStyle">
+	@import "css/demo_page.css";
+	@import "css/demo_table.css";
+</style>
+<script type="text/javascript" language="javascript" src="js/jquery.js"></script>
+<script type="text/javascript" language="javascript" src="js/jquery.dataTables.js"></script>
+<script type="text/javascript" language="javascript" src="table.js"></script>
+
+	
 </head>
 <body>
 <div id="container">
@@ -76,22 +53,45 @@ $pages = ceil($count/$per_page)
                 <td class="info">Pay Order Details</td>
                 </tr>
                 </table>
-                
-                
-                <div id="loading" ></div>
-		<div id="content" ></div>
-        <table width="800px">
-	<tr><Td>
-			<ul id="pagination">
-				<?php
-				//Show page links
-				for($i=1; $i<=$pages; $i++)
-				{
-					echo '<li id="'.$i.'">'.$i.'</li>';
-				}
-				?>
-	</ul>	
-	</Td></tr></table>
+                <br>
+                <div id="demo">
+                <div class="tab">
+                <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+                <thead>
+                <tr>
+                <th width="250">Person Name</th>
+                <th width="200">Company Name</th>
+                <th width="160">Contact No</th>
+                <th  width="10">Email_id </th>
+                <th width="100">Action</th>
+                </tr>
+        		<tbody>
+                <?php
+                while($c_row=mysql_fetch_array($c_res_f))
+                {                                                                                                                        
+                    
+                echo "<tr class='pagi'>";
+                echo "<td width='250'>";
+                echo $c_row[2]; 
+                echo "</td>";
+                echo "<td width='160'>";
+                echo $c_row[3];
+                echo "</td>";
+                echo "<td width='160'>";
+                echo $c_row[9];
+                echo "</td>";
+                echo "<td width='160'>";
+                echo $c_row[10];
+                echo "</td>"; 
+                echo "<td width='100'>";
+                echo "<a rel='facebox' href='add_delivery.php?c_id2=$c_row[0]' class='print'>Create</a>";
+                echo "</td>";
+                echo "</tr>";
+                }
+                ?>
+                </tbody>
+                </table>
+                                
                 </div>                             
   				</div>
                 </div>

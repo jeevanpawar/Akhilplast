@@ -2,13 +2,12 @@
 include("session.php");
 error_reporting(0);
 include("include/database.php");
-$per_page = 20; 
-$sql = "select * from stock";
-$rsd = mysql_query($sql);
-$count = mysql_num_rows($rsd);
-$pages = ceil($count/$per_page);
 ?>
 <?php
+
+	$c_qry_f="select * from stock order by st_id desc";
+	$c_res_f=mysql_query($c_qry_f);
+
 	if(isset($_REQUEST['c_id1']))
 	{
 		$c_d=$_REQUEST['c_id1'];
@@ -34,6 +33,14 @@ $pages = ceil($count/$per_page);
 <script type="text/javascript" src="js/superfish.js"></script>
 <script type="text/javascript" src="js/custom.js"></script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
+<style type="text/css" title="currentStyle">
+	@import "css/demo_page.css";
+	@import "css/demo_table.css";
+</style>
+<script type="text/javascript" language="javascript" src="js/jquery.js"></script>
+<script type="text/javascript" language="javascript" src="js/jquery.dataTables.js"></script>
+<script type="text/javascript" language="javascript" src="table.js"></script>
+
 <script type="text/javascript">
 function confirmSubmit()
 {
@@ -44,49 +51,7 @@ else
 	return false ;
 }
 
-	$(document).ready(function(){
-	//Display Loading Image
-	function Display_Load()
-	{
-	    $("#loading").fadeIn(900,0);
 	
-	}
-	//Hide Loading Image
-	function Hide_Load()
-	{
-		$("#loading").fadeOut('slow');
-	};
-	
-
-    //Default Starting Page Results
-   
-	$("#pagination li:first").css({'color' : '#FF0084'}).css({'border' : 'none'});
-	
-	Display_Load();
-	
-	$("#content").load("homepagination.php?page=1", Hide_Load());
-
-
-
-	//Pagination Click
-	$("#pagination li").click(function(){
-			
-		Display_Load();
-		
-		//CSS Styles
-		$("#pagination li")
-		.css({'color' : '#0063DC'});
-		
-		$(this)
-		.css({'color' : '#FF0084'})
-		.css({'border' : 'none'});
-
-		//Loading Data
-		var pageNum = this.id;
-		$("#content").load("homepagination.php?page=" + pageNum, Hide_Load());
-		
-	});
-});
 </script>
 
 </head>
@@ -96,55 +61,69 @@ else
 	    <?php
         include('header.php');
 		?>
-        
-        <table class="emp_tab">
-        
-        <?php
-		while($c_row=mysql_fetch_array($ans))
-		{
-        echo "<tr class='pagi'>";
-        echo "<td width='250'>";
-		echo $c_row[1];
-		echo "</td>";
-        echo "<td width='160'>";
-		echo $c_row[2];
-		echo "</td>";
-		echo "<td >";
-		echo $c_row[3];
-		echo "</td>";
-		echo "<td >";
-		echo $c_row[4];		
-        echo "<td >";
-		echo "<a href='?c_id1=$c_row[0]' onclick='return confirmSubmit()'><img src='imgs1/green_delete.png' height='20px;'/></a>&nbsp;<a href='update1_requirement.php?c_id2=$c_row[0]'> <img src='imgs1/updt.png' height='20px;'/></a>&nbsp;<a  href='viewwork.php?c_id3=$c_row[0]'><img src='imgs1/view.png'  /></a>";
-		echo "</td>";
-		echo "</tr>";
-		}
-		?>        
-        </table>
-     
-                
-       <form action="" method="post" name="search">
-		<table class="emp_tab">
+        <form action="" method="post" name="search">
+		<table class="emp_tab" cellpadding="0" cellspacing="0">
         <tr class="search_res">
         <td class="info">Product Stock Details</td>
+        <td width="100">
+		<span>
+		<a href="productpdf.php" class="new">Print</a>
+		</span>
+		</td>
         </tr>
         </table>
        </form>
-		<div id="loading" ></div>
-		<div id="content" ></div>
-        <table width="800px">
-	<tr><Td>
-			<ul id="pagination">
-				<?php
-						
-				//Show page links
-				for($i=1; $i<=$pages; $i++)
-				{								
-					echo '<li id="'.$i.'">'.$i.'</li>';
-				}
-				?>
-	</ul>	
-	</Td></tr></table>
+       <br>
+        <div id="demo">
+        <div class="tab">
+        <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+		<thead>
+        <tr>
+		<th width="100">Product Code</th>
+		<th width="250">Product Name</th>
+        <th width="160">Size</th>
+        <th width="160">Weight</th>
+        <th width="160">Color</th>
+        <th width="160">Shape</th>
+        <th width="150">Quantity</th>
+        </tr>	
+		</thead>
+		
+        <tbody>
+        <?php
+		while($c_row=mysql_fetch_array($c_res_f))
+		{
+        echo "<tr class='pagi'>";
+        echo "<td width='160'>";
+		echo $c_row[1];
+		echo "</td>";
+        echo "<td>";
+		echo $c_row[2];
+		echo "</td>";
+		echo "<td>";
+		echo $c_row[3];
+		echo "</td>";
+		echo "<td>";
+		echo $c_row[4];
+		echo "</td>";
+		echo "<td>";
+		echo $c_row[5];
+		echo "</td>";
+		echo "<td>";
+		echo $c_row[6];
+		echo "</td>";
+		echo "<td width='240'>";
+		echo $c_row[9];
+		echo "</td>";
+		echo "</tr>";
+		}
+		?>
+        </tbody>
+        </table>
+        </div>
+        </div>
+          
+		
     </div>
     </div>
         

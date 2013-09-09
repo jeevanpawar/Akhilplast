@@ -1,7 +1,7 @@
 <?php
 	include("include/database.php");	
  	$product= $_GET['p_id'];
-	$query="SELECT * FROM stock WHERE p_code='$product' group by st_name ";
+	$query="SELECT * FROM products WHERE p_code='$product' group by p_name ";
 	$result=mysql_query($query) or die(mysql_error());
 ?>
 <link rel="stylesheet" href="styles2.css" type="text/css" />
@@ -21,7 +21,7 @@
 	</select>
 </td></tr>
 <?php
-  $query="SELECT * FROM stock WHERE p_code='$product' group by st_size ";
+  $query="SELECT * FROM products WHERE p_code='$product' group by p_size ";
 	$result=mysql_query($query) or die(mysql_error());
 ?>
 	<tr><td class="l_form">Size:</td>
@@ -36,7 +36,7 @@
                 </select></td></tr>
                 
   <?php
-    $query="SELECT * FROM stock WHERE p_code='$product' group by st_wt";
+    $query="SELECT * FROM products WHERE p_code='$product' group by p_wt";
 	$result=mysql_query($query) or die(mysql_error());
   ?>
                 
@@ -51,7 +51,7 @@
 				 <?php } ?>
                 </select></td></tr>
   <?php
-    $query="SELECT * FROM stock WHERE p_code='$product' group by st_color ";
+    $query="SELECT * FROM products WHERE p_code='$product' group by p_color ";
 	$result=mysql_query($query) or die(mysql_error());
   ?>
                 				
@@ -65,7 +65,7 @@
 			<?php } ?>
                 </select></td></tr>
                 <?php
-    			$query="SELECT * FROM stock WHERE p_code='$product' group by shape ";
+    			$query="SELECT * FROM products WHERE p_code='$product' group by p_shape ";
 				$result=mysql_query($query) or die(mysql_error());
   				?>
                 <tr><td class="l_form">Shape:</td>

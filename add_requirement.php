@@ -186,7 +186,7 @@ function validateMyForm ( )
 </script>
     <?php
 	include("include/database.php");
-	$query="select * from stock";
+	$query="select * from products";
 	$exe=mysql_query($query);
 	$res=mysql_fetch_array($exe);	
 	?><br />
@@ -199,7 +199,7 @@ function validateMyForm ( )
                 	&nbsp;&nbsp;<select id="p_code" class="q_in2" name="p_code" onChange="getState(this.value)">
                     	<option value="0">Select</option>
                         <?php
-    						$query="select * from stock group by p_code";
+    						$query="select * from products group by p_code";
 							$exe=mysql_query($query);
 							while($res=mysql_fetch_array($exe))
 							{

@@ -23,7 +23,7 @@
 	
 		if($row[0]>1)
 		{
-			$qry_up="update stock SET st_quant='".$c_t10."' + $row[9] where p_code='$c_t1' or st_name='$c_t2' or st_size='$c_t3' or st_wt='$c_t4' or st_color='$c_t5' or shape='$c_t6'";
+			$qry_up="update stock SET st_quant='".$c_t10."' + $row[9] where p_code='$c_t1' and st_name='$c_t2' and st_size='$c_t3' and st_wt='$c_t4' and st_color='$c_t5' and shape='$c_t6'";
 			$res_up=mysql_query($qry_up);
 			
 			$c_qry="insert into stock_detail(st_id,st_date,st_shift,st_qty,m_code,p_code) values('".$row[0]."','".$c_t7."','".$c_t8."','".$c_t10."','".$c_t12."','".$c_t13."')";
