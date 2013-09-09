@@ -193,6 +193,12 @@ $res=mysql_query($qry);
 	margin-left:590px;
 	position:relative;
 }
+.hr th
+{
+	background-color:#C0C0C0;
+	border:1px solid #000;
+}
+
 </style>
 </head>
 <body>
@@ -201,17 +207,18 @@ $res=mysql_query($qry);
 <div class="inv">AKHIL PLAST</div>
 <div class="de">SALES DETAILS</div>
 <div class="date">Date : <?php echo date('d/m/Y'); ?></div>
-<table class="details" > 
+<table class="details" >
+<thead> 
 <tr class="hr">
-<td width="2%">S.No</td>
-<td width="2%">D.No</td>
-<td width="15%">Date</td>
-<td>Client Name</td>
-<td width="10%">Contact No</td>
-<td width="25%">Dispatch Through</td>
-<td width="10%">Quantity</td>
-
+<th width="5%">S</th>
+<th width="2%">D.No</th>
+<th width="15%">Date</th>
+<th>Client Name</th>
+<th width="10%">Contact</th>
+<th width="25%">Dispatch Through</th>
 </tr>
+</thead>
+<tbody>
 <?php
 $count=0;
 while($row=mysql_fetch_array($res))
@@ -239,12 +246,10 @@ while($row=mysql_fetch_array($res))
 	echo "<td>";
 	echo $row[3];
 	echo "</td>";
-	echo "<td>";
-	echo $row[4];
-	echo "</td>";
 	echo "</tr>";
 }
 ?>
+</tbody>
 </table>
 </div>
 </font>
@@ -259,10 +264,7 @@ $htmlcontent = stripslashes($htmlcontent);
   $dompdf->load_html($htmlcontent);
   $dompdf->set_paper("folio", "portrait");
   $dompdf->render();
-  $canvas = $dompdf->get_canvas();
   $font = Font_Metrics::get_font("", "bold");
-  $canvas->page_text(50,850, "AKHIL PLAST", $font, 6, array(0,0,0));
-  $canvas->page_text(500,850, "PAGE: {PAGE_NUM} OF {PAGE_COUNT}", $font, 8, array(0,0,0));
-  $dompdf->stream($filename, array("Attachment" => false));	
+   $dompdf->stream($filename, array("Attachment" => false));	
   exit(0);
 ?>

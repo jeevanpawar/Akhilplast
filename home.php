@@ -113,7 +113,7 @@ else
 		echo $c_row[6];
 		echo "</td>";
 		echo "<td width='240'>";
-		echo $c_row[9];
+		echo round($c_row[9]);
 		echo "</td>";
 		echo "</tr>";
 		}

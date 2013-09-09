@@ -132,7 +132,7 @@ function confirmSubmit()
 		echo $c_row[9];
 		echo "</td>";
 		echo "<td width='100'>";
-		echo $row_s[0];
+		echo round($row_s[0]);
 		echo "</td>";
 		echo "<td width='100'>";
 		echo $total;

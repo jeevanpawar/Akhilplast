@@ -240,16 +240,16 @@ while($row_d=mysql_fetch_array($res_detail1))
 	$count+=1;
 	echo "<tr>";
 	echo "<td align='center'>";
-	echo $count.'.';
+	echo "";
 	echo "</td>";	
 	echo "<td>";
 	echo $row_d[3];
 	echo "</td>";
 	echo "<td>";
-	echo $row_d[4].' X '.$row_d[5];
+	echo round($row_d[4]).' X '.$row_d[5];
 	echo "</td>";
 	echo "<td>";
-	echo $row_d[6];
+	echo round($row_d[6]);
 	echo "</td>";
 	echo "</tr>";
 }

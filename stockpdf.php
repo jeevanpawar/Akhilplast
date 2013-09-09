@@ -10,6 +10,8 @@ $date2=date('Y-m-d', strtotime($id2));
 
 $qry="select * from stock_detail where st_date >='".$date1."' and st_date <='".$date2."'";
 $res=mysql_query($qry);
+
+
 ?>
 <html>
 <head>
@@ -124,10 +126,11 @@ $res=mysql_query($qry);
 }
 .details
 {
+	font-size:14px;
 	width:100%;
 	text-align:center;
 }
-.details td
+.details tr
 {
 	border:1px solid #000;
 }
@@ -193,6 +196,15 @@ $res=mysql_query($qry);
 	margin-left:590px;
 	position:relative;
 }
+.hr th
+{
+	background-color:#C0C0C0;
+	border:1px solid #000;
+}
+.bo td
+{
+	border:1px solid #000;
+}
 </style>
 </head>
 <body>
@@ -201,21 +213,30 @@ $res=mysql_query($qry);
 <div class="inv">AKHIL PLAST</div>
 <div class="de">STOCK DETAILS</div>
 <div class="date">Date : <?php echo date('d/m/Y'); ?></div>
-<table class="details" > 
+<table class="details" cellpadding="1" cellspacing="1" style="table-layout:fixed"> 
+<thead>
 <tr class="hr">
-<td width="10">S.No</td>
-<td width="50">Date</td>
-<td width="50">Shift</td>
-<td width="50">Quantity</td>
-<td width="50">Machine Code</td>
-<td width="50">Person Code</td>
+<th width="5%">S</th>
+<th width="12%">Date</th>
+<th width="15%">P. Code</th>
+<th width="25%">P. Name</th>
+<th width="13%">Shift</th>
+<th width="10%">Machine</th>
+<th width="10%">Person</th>
+<th width="10%">Quantity</th>
 </tr>
+</thead>
+<tbody>
 <?php
 $count=0;
 while($row=mysql_fetch_array($res))
 {
+	$qry_s="select * from stock";
+	$res_s=mysql_query($qry_s);
+	$row_s=mysql_fetch_array($res_s);
+	
 	$count+=1;
-	echo "<tr>";
+	echo "<tr class='bo'>";
 	echo "<td align='center'>";
 	echo $count.'';
 	echo "</td>";	
@@ -223,10 +244,13 @@ while($row=mysql_fetch_array($res))
 	echo date('d-m-Y', strtotime($row[2]));
 	echo "</td>";
 	echo "<td>";
-	echo $row[3];
+	echo $row[6];
 	echo "</td>";
 	echo "<td>";
 	echo $row[4];
+	echo "</td>";
+	echo "<td>";
+	echo $row[3];
 	echo "</td>";
 	echo "<td>";
 	echo $row[5];
@@ -234,9 +258,13 @@ while($row=mysql_fetch_array($res))
 	echo "<td>";
 	echo $row[6];
 	echo "</td>";
+	echo "<td>";
+	echo round($row[4]);
+	echo "</td>";
 	echo "</tr>";
 }
 ?>
+</tbody>
 </table>
 </div>
 </font>
@@ -251,10 +279,7 @@ $htmlcontent = stripslashes($htmlcontent);
   $dompdf->load_html($htmlcontent);
   $dompdf->set_paper("folio", "portrait");
   $dompdf->render();
-  $canvas = $dompdf->get_canvas();
   $font = Font_Metrics::get_font("", "bold");
-  $canvas->page_text(50,850, "AKHIL PLAST", $font, 6, array(0,0,0));
-  $canvas->page_text(500,850, "PAGE: {PAGE_NUM} OF {PAGE_COUNT}", $font, 8, array(0,0,0));
   $dompdf->stream($filename, array("Attachment" => false));	
   exit(0);
 ?>

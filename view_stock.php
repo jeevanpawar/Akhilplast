@@ -136,7 +136,7 @@ else
 			echo $row[5];
 			echo "</td>";
 			echo "<td>";
-			echo $row[4];
+			echo round($row[4]);
 			echo "</td>";
 			echo "<td width='100'>";
 			echo "<a href='sockpagination.php?del=$row[0]' onclick='return confirmSubmit()' class='print'>Delete</a>&nbsp;";
